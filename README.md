@@ -20,10 +20,11 @@
     # Preço Produto
     # Parcelas
     # Data de Compra
-    # Data do Parcela
-3.  Sócias
+    # Data da Parcela
+3.  Empresa
     # Nome
-    # CPF (CHAVE)
+    # CNPJ (CHAVE)
+    # Inscrição Estadual
     # Endereço
     # Telefone 
 4. Estoque
@@ -38,7 +39,9 @@
     # CPF (CHAVE)
     # Telefone
     # Salário
+    # Folha de Pagamento
     # Endereço
+    # Setor
 6. Receitas
     # Pagamentos em espécie
     # Cartão de crédto ou débito
@@ -47,17 +50,25 @@
 7. Despesas
     # Contas de água e luz
     # Salários
-    # Compra de mercadoria
+    # Internet
     # Aluguel
-8. Contratos
-    # (.....)
+    # Imposto
+8. Contato
+    # Email
+    # Rede Social
+    # Contatos dos fornecedores e Representante
 9. Roupas
     # tamanho
     # tipo das peças
     # gênero
 10. Comésticos
+    # Cod do Produto
+    # Referencia
+    # Descrição
     # tipo do produto
-    # (......)
+11. Investimentos
+    # Compra de Mercadoria
+    # Compra de Moveis
 # =================================================
 
 Temos uma loja de Roupas e cosméticos. Uma loja de Roupas possui as donas/socias, funcionarios,  clientes e produtos. Ambos as 
