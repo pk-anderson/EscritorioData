@@ -45,7 +45,6 @@
 6. Receitas
     # Pagamentos em espécie
     # Cartão de crédto ou débito
-    # Cheque
     # Promissória(Carnê)   
 7. Despesas
     # Contas de água e luz
