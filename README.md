@@ -5,14 +5,16 @@
 # Levantamento de requisitos
 #===================================================================
 
-Temos uma loja de roupas e cosméticos. 
+Temos uma loja de roupas e cosméticos.
+
 As donas desta loja administram funcionários,  clientes e produtos. Por possuirem alguns funcionários, é necessário armarzenar nome, CPF, endereço, telefone, salário, setor de trabalho e sua matrícula que o distingua dos demais dentro da loja. Há uma especialização desta entidade em gerente que exercem maior responsabilidade os demais sendo-lhes atribuído as funções:
 
-    a) Administrar receitas, armazenando no banco os tipos de receita e a data de recebimentos;
+    a) Administrar receitas, armazenando no banco os tipos de receita, a data de recebimento, uma pequena descrição da receita e a matrícula do gerente responsável;
     
-    b) Administrar despesas, armazendo os tipos de pagamento e datas de pagamento, e investimentos realizados para a manutenção e melhoria da qualidade do atendimento no espaço;
+    b) Administrar despesas, armazendo os tipos de pagamento, datas de pagamento, uma pequena descrição da despesa e a matrícula do gerente responsável;
     
-    c) Celebrar contratos, sendo que destes é armazenados o nome da marca contrante, CNPJ da empresa, e-mail e telefone para contato.
+    c) Celebrar contratos, sendo que destes é armazenados o nome da marca contrante, CNPJ da empresa, e-mail e telefone para contato, e a matrícula do gerente responsável.
+
 Os gerentes podem realizar as compras dos produtos que serão comercializados na loja. Para cada compra, será necessário armazenar o tipo de produtos, quantidade dos produtos, valor pago na compra e a data na qual a compra fora realizada. Estas compras realizam alterações na quantidade do número de peças no estoque da loja.
 
 Os funcionários da loja realizam vendas, sendo que para cada venda é necessário armazenar a matrícula do funcionário que realizou a venda, o CPF do cliente, o número de referência do produto, a nota fiscal, número de parcelas, data de pagamento, data da compra, preço do produto e valor pago no final da venda.
@@ -52,7 +54,7 @@ O estoque contém os produtos disponíveis para serem comercializados na loja e 
 # Dicionário conceitual de dados
 #===================================================================
 
-**Entidades**
+#Entidades
 
 Entidade Funcionários:
 
@@ -226,6 +228,6 @@ Entidade Contrato:
     
     - Telefone: armazena o telefone para contato com a marca contratante.
 
-**Relacionamentos**
+#Relacionamentos
     
  
