@@ -52,7 +52,7 @@ O estoque contém os produtos disponíveis para serem comercializados na loja e 
 # Dicionário conceitual de dados
 #===================================================================
 
-Entidades
+**Entidades**
 
 Entidade Funcionários:
 
@@ -225,5 +225,7 @@ Entidade Contrato:
     - E-mail: armazena o e-mail para contato com a marca contratante;
     
     - Telefone: armazena o telefone para contato com a marca contratante.
+
+**Relacionamentos**
     
  
