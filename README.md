@@ -55,15 +55,25 @@ O estoque contém os produtos disponíveis para serem comercializados na loja e 
 Entidades
 
 Entidade Funcionários:
+
     Entidade principal que armazena informações e relacionamenos mais genéricos sobre os funcionários da loja.
+    
     -Atributos:
+    
         - Matrícula: armazena o número da matrícula do funcionário dentro da loja;
+        
         - Nome: armazena o nome do funcionário;
+        
         - CPF: armazena o número do CPF do funcionário;
+        
         - Telefone: armazena o telefone do funcionário;
+        
         - Endereço: armazena o endereço do funcionário;
+        
         - Salário: armazena o valor que o funcionário recebe mensalmente;
+       
         - Setor: armazena o setor onde o funcionário trabalho.
+        
 Entidade Gerente:
     Especialização da entidade funcinário e possue todos os atributos da entidade principal e armazena todas as informações dos gerentes da loja. Não há nenhum atributo específico.
 Entidade Venda:
