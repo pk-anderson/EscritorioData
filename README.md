@@ -54,7 +54,7 @@ O estoque contém os produtos disponíveis para serem comercializados na loja e 
 # Dicionário conceitual de dados
 #===================================================================
 
-#Entidades
+**Entidades**
 
 Entidade Funcionários:
 
@@ -228,6 +228,27 @@ Entidade Contrato:
     
     - Telefone: armazena o telefone para contato com a marca contratante.
 
-#Relacionamentos
+**Relacionamentos**
+
+    - Realiza: Relaciona "Funcionário" e "Venda". Cada funcionário pode ralizadar nenhuma ou várias vendas, e cada venda só poderá ser realizada por um único funcionário.
     
+    - Feita: Relaciona "Venda" e "Cliente". Cada venda é realizada sob o cadastro de um único cliente, e cada cliente pode estar relacionado a uma ou várias vendas.
+    
+    - Altera: Relaciona "Venda" e "Estoque". Cada venda altera uma ou várias quantidades de produtos no estoque e cada quantidade no estoque pode ser alterada por uma ou várias vendas. 
+        - Atributo:
+        - Quantidade: armazena a quantidade de produtos que serão subtraídos do estoque.
+            
+    - Contém: Relaciona "Estoque" e "Produto". Cada estoque pode conter nenhum ou vários produtos de determinado tipo e cada produto está relacionado a um único estoque.
+
+    - Realiza: Relaciona "Gerente" e "Compra". Cada gerente pode realizar nenhuma ou várias compras, cada compra é realizada por um único gerente.
+
+    - Altera: Relaciona "Compra" e "Estoque". Cada compra altera uma ou várias quantidades de produtos no estoque e cada quantidade no estoque pode ser alterada por uma ou várias compras. 
+        - Atributo:
+        - Quantidade: armazena a quantidade de produtos que serão adicionados ao estoque.
+ 
+    - Administra: Relaciona "Gerente" e "Receita". Cada gerente administra nenhuma ou várias receitas e cada receita é gerida por um ou vários gerentes.
+
+    - Administra: Relaciona "Gerente" e "Despesa". Cada gerente administra nenhuma ou várias despesas e cada despesa é gerida por um ou vários gerentes.
+
+    - Celebra: Relaciona "Gerente" e "Contrato". Cada gerente celebra nenhum ou vários contratos e cada contrato é gerido por um ou vários gerentes.
  
