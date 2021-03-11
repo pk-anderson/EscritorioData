@@ -15,15 +15,11 @@ As donas desta loja administram funcionários,  clientes e produtos. Por possuir
     
     c) Celebrar contratos, sendo que destes é armazenados o nome da marca contrante, CNPJ da empresa, e-mail e telefone para contato, e a matrícula do gerente responsável.
 
-Os gerentes podem realizar as compras dos produtos que serão comercializados na loja. Para cada compra, será necessário armazenar o tipo de produtos, quantidade dos produtos, valor pago na compra e a data na qual a compra fora realizada. Estas compras realizam alterações na quantidade do número de peças no estoque da loja.
+Os gerentes podem realizar as compras dos produtos que serão comercializados na loja. Para cada compra, será necessário armazenar o tipo de produtos, quantidade dos produtos, valor pago na compra e a data na qual a compra fora realizada. Estas compras realizam alterações na quantidade do número de peças da loja.
 
-Os funcionários da loja realizam vendas, sendo que para cada venda é necessário armazenar a matrícula do funcionário que realizou a venda, o CPF do cliente, o número de referência do produto, a nota fiscal, número de parcelas, data de pagamento, data da compra, preço do produto e valor pago no final da venda.
+As vendas são realizadas para os clientes. Para estes, são armazenados o nome, o cpf, documento de indentidade, endereço, estado de adimplência, produtos que foram comprados, telefone. Para as vendas, são armazenadas a matrícula do funcionário que a realizou, o CPF do cliente que comprou, a nota fiscal da venda, o número de parcelas, a data da última parcela que foi paga e a data de vencimento da próxima parcela, o valor total da venda junto com a data de sua realização. Estas provocam alterações na quantidade de produtos disponíveis na loja. 
 
-As vendas são realizadas para os clientes. Para estes, são armazenados o nome, o cpf, documento de indentidade, endereço, estado de adimplência, produtos que foram comprados, telefone. Para as vendas, são armazenadas a matrícula do funcionário que realizou a venda, o CPF do cliente que comprou, o número de referência dos produtos vendidos, a nota fiscal da venda, o número de parcelas, a data da última parcela que foi paga e a data de vencimento da próxima parcela, o valor total da venda junto com a data de sua realização.
-
-Estas vendas carregam consigo o preço unitáro de cada produto que está sendo comprado pelo cliente e provocam alterações na quantidade do estoque da loja. Este último, por sua vez, armazena os tipos de produtos disponíveis e mostra suas respectivas quantidades.
-
-O estoque contém os produtos disponíveis para serem comercializados na loja e cada produto possui uma referência e um código, além de serem armazenados o nome, preço, classe, descrição e a marca. Os produtos vendidos na loja podem ser peças de roupas ou cosméticos. Para as roupas é preciso armarzenar o tamanho das peças, o tipo das peças e o gênero a qual vestem. Para os cosméticos deve ser armazenado o tipo do produto.
+Os produtos disponíveis para serem comercializados na loja possuem uma referência e um código, além de serem armazenados o nome, preço, classe, descrição, marca e quantidade. Os produtos vendidos na loja podem ser peças de roupas ou cosméticos. Para as roupas é preciso armarzenar o tamanho das peças, o tipo das peças e o gênero a qual vestem. Para os cosméticos deve ser armazenado o tipo do produto.
 
 #===================================================================
 # Consultas
@@ -43,12 +39,11 @@ O estoque contém os produtos disponíveis para serem comercializados na loja e 
 13. Lista de vendas realizadas com base no cliente;
 14. Lista de todos os clientes;
 15. Lista de todas as compras;
-16. Lista de todas as compras por tipo;
-17. Lista dos tipos de produtos disponíveis no estoque;
-18. Lista de todos os produtos;
-19. Lista de produtos por referência;
-20. Lista de produtos por código;
-21. Lista de clientes que estão inadimplentes com a loja;
+16. Lista da quantidade de produtos disponíveis na loja;
+17. Lista de todos os produtos;
+18. Lista de produtos por referência;
+19. Lista de produtos por código;
+20. Lista de clientes que estão inadimplentes com a loja;
 
 #===================================================================
 # Dicionário conceitual de dados
@@ -89,9 +84,7 @@ Entidade Venda:
     - Matrícula: armazena a matrícula do funcionário que realizou a venda;
     
     - CPF_do_cliente: armazena o CPF do cliente que realizou uma compra na loja;
-    
-    - Ref_do_produto: **armazena as referências dos produtos que foram vendidos (OLHAR ISSO AQUI!);**
-    
+          
     - Nota_fiscal: armazena o número da nota fiscal que fora emitida naquela venda;
     
     - Parcelas: armazena o número de parcelas da venda, as quais serão pagas pelo cliente;
@@ -103,9 +96,7 @@ Entidade Venda:
     - Data_da_venda: armazena a data que foi realizada a venda;
     
     - Valor_da_venda: armazena o valor total da venda;
-    
-    - Preço_do_produto: armazena os preços unitários que compõem a venda. (OLHAR ISSO AQUI!)
-    
+            
 Entidade Cliente:
 
     Armazena as informações sobre os clientes que realizaram compras na loja.
@@ -128,25 +119,12 @@ Entidade Compra:
 
     Armazena as informações sobre as compras de produtos para compor o estoque da loja, realizadas pelos gerentes.
     
-    - Atributos:
-    
-    - Tipo_de_produto: armazena o tipo do produto que foi comprado;
-    
-    - Quantidade: armazena a quantidade de produtos de cada tipo que foram comprados;
+    - Atributos: 
     
     - Valor: armazena o valor total da compra realizada;
     
     - Data_da_compra: armazena a data que foi realizada a compra.
     
-Entidade Estoque:
-
-    Armazena as informações sobre o estoque de produtos que estão disponíveis na loja.
-    
-    - Atributos:
-    
-    - Quantidade: armazena a quantidade de cada produto disponíveis na loja;
-    
-    - Tipo_de_produto: armazena o tipo de produto disponível na loja.
     
 Entidade Produto:
 
@@ -162,7 +140,9 @@ Entidade Produto:
     
     - Descrição: armazena uma pequena descrição das características dos produtos;
     
-    - Marca: armazena a marca do produto.
+    - Marca: armazena a marca do produto;
+
+    - Quantidade: armazena a quantidade de produtos disponíveis na loja.
     
 Entidade Cosmético:
 
@@ -210,7 +190,7 @@ Entidade Despesa:
      
     - Descrição: armazena uma pequena descrição da despesa que está sendo executada;
     
-    - Tipo_de_despesa: armazena o tipo de despesa que está sendo execultada.
+    - Tipo_de_despesa: armazena o tipo de despesa que está sendo executada.
     
 Entidade Contrato:
 
@@ -230,25 +210,25 @@ Entidade Contrato:
 
 **Relacionamentos**
 
-    - Realiza: Relaciona "Funcionário" e "Venda". Cada funcionário pode ralizadar nenhuma ou várias vendas, e cada venda só poderá ser realizada por um único funcionário.
+    - Realiza: Relaciona "Funcionário" e "Venda". Cada funcionário pode realizadar nenhuma ou várias vendas e cada venda poderá ser realizada por um único funcionário.
     
-    - Feita: Relaciona "Venda" e "Cliente". Cada venda é realizada sob o cadastro de um único cliente, e cada cliente pode estar relacionado a uma ou várias vendas.
+    - Feita: Relaciona "Venda" e "Cliente". Cada venda é realizada sob o cadastro de um único cliente e cada cliente pode estar relacionado a uma ou várias vendas.
     
-    - Altera: Relaciona "Venda" e "Estoque". Cada venda altera uma ou várias quantidades de produtos no estoque e cada quantidade no estoque pode ser alterada por uma ou várias vendas. 
-        - Atributo:
-        - Quantidade: armazena a quantidade de produtos que serão subtraídos do estoque.
+    - Contém: Relaciona "Venda" e "Produtos". Cada venda contém um ou mais produtos e cada produto está contido em uma ou mais vendas.
+        - Atributos:
+        - Quantidade: armazena a quantidade de produtos que serão vendidas;
+        - Preço unitário: preço de cada produto no momento do venda;
             
-    - Contém: Relaciona "Estoque" e "Produto". Cada estoque pode conter nenhum ou vários produtos de determinado tipo e cada produto está relacionado a um único estoque.
+    - Realiza: Relaciona "Gerente" e "Compra". Cada gerente pode realizar nenhuma ou várias compras, cada compra é realizada por um ou vários gerentes.
 
-    - Realiza: Relaciona "Gerente" e "Compra". Cada gerente pode realizar nenhuma ou várias compras, cada compra é realizada por um único gerente.
-
-    - Altera: Relaciona "Compra" e "Estoque". Cada compra altera uma ou várias quantidades de produtos no estoque e cada quantidade no estoque pode ser alterada por uma ou várias compras. 
-        - Atributo:
-        - Quantidade: armazena a quantidade de produtos que serão adicionados ao estoque.
+    - Altera: Relaciona "Compra" e "Produto".  Cada compra contém um ou mais produtos e cada produto está contido em uma ou mais compras. 
+        - Atributos:
+        - Quantidade: armazena a quantidade de produtos que serão adicionados ao total;
+        - Preço unitário: preço da compra de cada produto;
  
-    - Administra: Relaciona "Gerente" e "Receita". Cada gerente administra nenhuma ou várias receitas e cada receita é gerida por um ou vários gerentes.
+    - Administra: Relaciona "Gerente" e "Receita". Cada gerente administra nenhuma ou várias receitas e cada receita é gerida por um único gerente.
 
-    - Administra: Relaciona "Gerente" e "Despesa". Cada gerente administra nenhuma ou várias despesas e cada despesa é gerida por um ou vários gerentes.
+    - Administra: Relaciona "Gerente" e "Despesa". Cada gerente administra nenhuma ou várias despesas e cada despesa é gerida por um único gerente.
 
-    - Celebra: Relaciona "Gerente" e "Contrato". Cada gerente celebra nenhum ou vários contratos e cada contrato é gerido por um ou vários gerentes.
+    - Celebra: Relaciona "Gerente" e "Contrato". Cada gerente celebra nenhum ou vários contratos e cada contrato é gerido por um único gerente.
  
