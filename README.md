@@ -7,19 +7,19 @@
 
 Temos uma loja de roupas e cosméticos.
 
-As donas desta loja administram funcionários,  clientes e produtos. Por possuirem alguns funcionários, é necessário armarzenar nome, CPF, endereço, telefone, salário, setor de trabalho e sua matrícula que o distingua dos demais dentro da loja. Há uma especialização desta entidade em gerente que exercem maior responsabilidade os demais sendo-lhes atribuído as funções:
+As donas desta loja administram funcionários,  clientes e produtos. Por possuirem alguns funcionários, é necessário armarzenar nome, CPF, endereço, telefone, salário, setor de trabalho, sua matrícula que o distingua dos demais dentro da loja, o tipo de funcionário e o status. Há uma especialização desta entidade em gerente, e estes exercem maior responsabilidade que os demais funcionários, sendo-lhes atribuído as funções:
 
-    a) Administrar receitas, armazenando no banco os tipos de receita, a data de recebimento, uma pequena descrição da receita e a matrícula do gerente responsável;
+    a) Administrar receitas, armazenando no banco os tipos de receita, a data de recebimento, uma pequena descrição da receita e o código da receita;
     
-    b) Administrar despesas, armazendo os tipos de pagamento, datas de pagamento, uma pequena descrição da despesa e a matrícula do gerente responsável;
+    b) Administrar despesas, armazendo os tipos de pagamento, datas de pagamento, uma pequena descrição da despesa e o código da despesa;
     
-    c) Celebrar contratos, sendo que destes é armazenados o nome da marca contrante, CNPJ da empresa, e-mail e telefone para contato, e a matrícula do gerente responsável.
+    c) Celebrar contratos, sendo que destes é armazenados o nome da marca contrante, CNPJ da empresa, e-mail e telefone para contato.
 
-Os gerentes podem realizar as compras dos produtos que serão comercializados na loja. Para cada compra, será necessário armazenar o tipo de produtos, quantidade dos produtos, valor pago na compra e a data na qual a compra fora realizada. Estas compras realizam alterações na quantidade do número de peças da loja.
+Os gerentes podem realizar as compras dos produtos que serão comercializados na loja. Para cada compra, será necessário armazenar o tipo de produtos, quantidade dos produtos, valor pago na compra, a data na qual a compra fora realizada e o código da compra. Estas compras realizam alterações na quantidade do número de peças da loja.
 
-As vendas são realizadas para os clientes. Para estes, são armazenados o nome, o cpf, documento de indentidade, endereço, estado de adimplência, produtos que foram comprados, telefone. Para as vendas, são armazenadas a matrícula do funcionário que a realizou, o CPF do cliente que comprou, a nota fiscal da venda, o número de parcelas, a data da última parcela que foi paga e a data de vencimento da próxima parcela, o valor total da venda junto com a data de sua realização. Estas provocam alterações na quantidade de produtos disponíveis na loja. 
+As vendas são realizadas para os clientes. Para estes, são armazenados o nome, o cpf, documento de indentidade, endereço, estado de adimplência e números de telefone. Para as vendas, são armazenadas a nota fiscal da venda, o número de parcelas, a data da última parcela que foi paga e a data de vencimento da próxima parcela, o valor total da venda junto com a data de sua realização. Estas provocam alterações na quantidade de produtos disponíveis na loja. 
 
-Os produtos disponíveis para serem comercializados na loja possuem uma referência e um código, além de serem armazenados o nome, preço, classe, descrição, marca e quantidade. Os produtos vendidos na loja podem ser peças de roupas ou cosméticos. Para as roupas é preciso armarzenar o tamanho das peças, o tipo das peças e o gênero a qual vestem. Para os cosméticos deve ser armazenado o tipo do produto.
+Os produtos disponíveis para serem comercializados na loja possuem uma referência e um código, além de serem armazenados o nome, preço, descrição, marca e quantidade. Os produtos vendidos na loja podem ser peças de roupas ou cosméticos. Para as roupas é preciso armarzenar o tamanho das peças, o tipo das peças e o gênero a qual vestem. Para os cosméticos deve ser armazenado o tipo do produto.
 
 #===================================================================
 # Consultas
@@ -57,45 +57,45 @@ Entidade Funcionários:
     
     -Atributos:
     
-        - Matrícula: armazena o número da matrícula do funcionário dentro da loja;
+        - matrícula: armazena o número da matrícula do funcionário dentro da loja;
         
-        - Nome: armazena o nome do funcionário;
+        - nome: armazena o nome do funcionário;
         
-        - CPF: armazena o número do CPF do funcionário;
+        - cpf: armazena o número do CPF do funcionário;
         
-        - Telefone: armazena o telefone do funcionário;
+        - telefone: armazena o telefone do funcionário;
         
-        - Endereço: armazena o endereço do funcionário;
+        - endereço: armazena o endereço do funcionário;
         
-        - Salário: armazena o valor que o funcionário recebe mensalmente;
+        - salário: armazena o valor que o funcionário recebe mensalmente;
        
-        - Setor: armazena o setor onde o funcionário trabalho.
+        - setor: armazena o setor onde o funcionário trabalho.
+        
+        - tipo: Se o funcionário é comum ou gerente.
+       
+        - status: Se o funcionário está contratado ou demitido.
         
 Entidade Gerente:
 
-    Especialização da entidade funcinário e possue todos os atributos da entidade principal e armazena todas as informações dos gerentes da loja. Não há nenhum atributo específico.
+    Especialização da entidade funcinário e possui todos os atributos da entidade principal e armazena todas as informações dos gerentes da loja. Não há nenhum atributo específico.
     
 Entidade Venda:
 
     Entidade que armazena as informações das vendas que ocorrem na loja. 
     
     -Atributos:
-    
-    - Matrícula: armazena a matrícula do funcionário que realizou a venda;
-    
-    - CPF_do_cliente: armazena o CPF do cliente que realizou uma compra na loja;
           
-    - Nota_fiscal: armazena o número da nota fiscal que fora emitida naquela venda;
+    - notaFiscal: armazena o número da nota fiscal que fora emitida naquela venda;
     
-    - Parcelas: armazena o número de parcelas da venda, as quais serão pagas pelo cliente;
+    - parcelas: armazena o número de parcelas da venda, as quais serão pagas pelo cliente;
     
-    - Parcela_atual: armazena a data na qual foi paga a parcela mais recente da venda;
+    - parcelaAtual: armazena a data na qual foi paga a parcela mais recente da venda;
     
-    - Próxima_parcela: armazena a data do próxima parcela a ser paga pelo cliente;
+    - proxParcela: armazena a data do próxima parcela a ser paga pelo cliente;
     
-    - Data_da_venda: armazena a data que foi realizada a venda;
+    - dataVenda: armazena a data que foi realizada a venda;
     
-    - Valor_da_venda: armazena o valor total da venda;
+    - valorVenda: armazena o valor total da venda;
             
 Entidade Cliente:
 
@@ -103,17 +103,17 @@ Entidade Cliente:
     
     - Atributos:
     
-    -  Nome: armazena o nome do cliente;
+    -  nome: armazena o nome do cliente;
     
-    -  CPF: armazena o CPF do cliente;
+    -  cpf: armazena o CPF do cliente;
     
-    -  Endereço: armazena o endereço do cliente;
+    -  endereço: armazena o endereço do cliente;
     
-    -  Status: armazena o estado de adimplência do cliente com a loja;
+    -  status: armazena o estado de adimplência do cliente com a loja;
     
-    -  Telefone: armazena o telefone do cliente;
+    -  telefone: atributo multivalorado que armazena os números de telefone do cliente;
     
-    -  Número_do_RG: armazena o número do documento de registro geral do cliente.
+    -  rg: armazena o número do documento de registro geral do cliente.
       
 Entidade Compra:
 
@@ -121,9 +121,11 @@ Entidade Compra:
     
     - Atributos: 
     
-    - Valor: armazena o valor total da compra realizada;
+    - codigo: código correspondente a cada compra.
     
-    - Data_da_compra: armazena a data que foi realizada a compra.
+    - valor: armazena o valor total da compra realizada;
+    
+    - dataCompra: armazena a data que foi realizada a compra.
     
     
 Entidade Produto:
@@ -132,17 +134,19 @@ Entidade Produto:
     
     - Atributos:
     
-    - Referência: armazena o número de referência do produto;
+    - referência: armazena o número de referência do produto;
     
-    - Preço: armazena o valor de cada produto;
+    - preço: armazena o valor de cada produto;
    
-    - Código_do_produto: armazena o código do produto;
+    - codigoProduto: armazena o código do produto;
     
-    - Descrição: armazena uma pequena descrição das características dos produtos;
+    - descrição: armazena uma pequena descrição das características dos produtos;
     
-    - Marca: armazena a marca do produto;
+    - marca: armazena a marca do produto;
 
-    - Quantidade: armazena a quantidade de produtos disponíveis na loja.
+    - quantidade: armazena a quantidade de produtos disponíveis na loja.
+    
+    - nome: armazena o nome do produto.
     
 Entidade Cosmético:
 
@@ -150,7 +154,7 @@ Entidade Cosmético:
     
     - Atributos:
     
-    - Tipo_do_produto: armazena o tipo de cosmético.
+    - tipoProduto: armazena o tipo de cosmético.
     
 Entidade Roupa:
 
@@ -158,11 +162,11 @@ Entidade Roupa:
     
     - Atributos:
     
-    - Tamanho: armazena o tamanho da peça de roupa;
+    - tamanho: armazena o tamanho da peça de roupa;
     
-    - Tipos_das_peças: armazena o tipo das peças de roupas;
+    - tiposPecas: armazena o tipo das peças de roupas;
     
-    - Gênero: armazena se a roupa é para o gênero masculino, feminino ou unissex.
+    - genero: armazena se a roupa é para o gênero masculino, feminino ou unissex.
     
 Entidade Receita:
 
@@ -170,13 +174,13 @@ Entidade Receita:
     
     - Atributos:
     
-    - Tipos_de_receitas: armazena o tipo de receitas da loja;
+    - tiposReceita: armazena o tipo de receitas da loja;
     
-    - Matrícula_do_gerente: armazena a matrícula do gerente que administrou aquela receita;
+    - codigo: armazena o código correspondente à receita;
     
-    - Descrição: armazena uma pequena descrição da receita que está entrado em caixa;
+    - descricao: armazena uma pequena descrição da receita que está entrado em caixa;
     
-    - Data_de_recebimento: armazena a data de recebimento da receita.
+    - dataRecebimento: armazena a data de recebimento da receita.
     
 Entidade Despesa:
 
@@ -184,13 +188,13 @@ Entidade Despesa:
     
     - Atributos:
     
-    - Data_de_pagamento: armazena a data de pagamento daquela despesa;
+    - dataPagamento: armazena a data de pagamento daquela despesa;
     
-    - Matrícula_do_gerente: armazena a matrícula do gerente que administrou aquela despesa;
+    - codigo: armazena o código correspondente à despesa;
      
-    - Descrição: armazena uma pequena descrição da despesa que está sendo executada;
+    - descricao: armazena uma pequena descrição da despesa que está sendo executada;
     
-    - Tipo_de_despesa: armazena o tipo de despesa que está sendo executada.
+    - tipoDespesa: armazena o tipo de despesa que está sendo executada.
     
 Entidade Contrato:
 
@@ -198,11 +202,9 @@ Entidade Contrato:
     
     - Atributos:
     
-    - Nome_da_marca: armazena o nome da marca contratante;
+    - nomeMarca: armazena o nome da marca contratante;
     
-    - CNPJ: armazena o CNPJ da marca contratante;
-    
-    - Matrícula_do_gerente: armazena a matrícula do gerente que celebrou aquele contrato;
+    - cnpj: armazena o CNPJ da marca contratante;
     
     - E-mail: armazena o e-mail para contato com a marca contratante;
     
@@ -216,15 +218,15 @@ Entidade Contrato:
     
     - Contém: Relaciona "Venda" e "Produtos". Cada venda contém um ou mais produtos e cada produto está contido em uma ou mais vendas.
         - Atributos:
-        - Quantidade: armazena a quantidade de produtos que serão vendidas;
-        - Preço unitário: preço de cada produto no momento do venda;
+        - quantidade: armazena a quantidade de produtos que serão vendidas;
+        - precoUnitario: preço de cada produto no momento do venda;
             
-    - Realiza: Relaciona "Gerente" e "Compra". Cada gerente pode realizar nenhuma ou várias compras, cada compra é realizada por um ou vários gerentes.
+    - Realiza: Relaciona "Gerente" e "Compra". Cada gerente pode realizar nenhuma ou várias compras, cada compra é realizada por apenas um gerente.
 
-    - Altera: Relaciona "Compra" e "Produto".  Cada compra contém um ou mais produtos e cada produto está contido em uma ou mais compras. 
+    - Contém: Relaciona "Compra" e "Produto".  Cada compra contém um ou mais produtos e cada produto está contido em uma ou mais compras. 
         - Atributos:
-        - Quantidade: armazena a quantidade de produtos que serão adicionados ao total;
-        - Preço unitário: preço da compra de cada produto;
+        - quantidade: armazena a quantidade de produtos que serão adicionados ao total;
+        - precoUnitario: preço da compra de cada produto;
  
     - Administra: Relaciona "Gerente" e "Receita". Cada gerente administra nenhuma ou várias receitas e cada receita é gerida por um único gerente.
 
