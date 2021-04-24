@@ -1,0 +1,410 @@
+{\rtf1\ansi\deff0{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red32\green33\blue36;\red255\green255\blue255;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sa160\sl259\slmult0\cf1\highlight2\lang22\b\fs20 Tabela Funcion\'e1rios\par
+\b0 create TABLE Funcionario ( \par
+matricula VARCHAR(10), \par
+cpf CHAR(14) UNIQUE not NULL, \par
+nome VARCHAR(50) not NULL, \par
+telefone VARCHAR(20), \par
+endereco VARCHAR(50) not NULL, \par
+salario REAL not NULL, \par
+setor VARCHAR(20) not NULL, \par
+tipo VARCHAR(15) not NULL,\par
+status BOOLEAN not NULL, \par
+CONSTRAINT pk PRIMARY KEY (matricula)\par
+ )\par
+\b Tabela Receita\par
+\b0 create TABLE Receita ( \par
+matricula VARCHAR(10),\par
+codigo VARCHAR(12),\par
+tiporeceita VARCHAR(15) not NULL,\par
+descricao VARCHAR(100) not NULL,\par
+datarecebimento DATE not NULL,\par
+constraint fkreceita foreign key (matricula) references Funcionario (matricula) \par
+\tab on update cascade on delete restrict,\par
+constraint pkreceita primary key (codigo)\par
+)\par
+\b Tabela Despesa\par
+\b0 create TABLE Despesa ( \par
+matricula VARCHAR(10),\par
+codigo VARCHAR(12),\par
+tipodespesa VARCHAR(15) not NULL,\par
+descricao VARCHAR(100) not NULL,\par
+datarecebimento DATE not NULL,\par
+constraint fkdespesa foreign key (matricula) references Funcionario (matricula) \par
+\tab on update cascade on delete restrict,\par
+constraint pkdespesa primary key (codigo)\par
+)\par
+\b Tabela Contrato\par
+\b0 create TABLE Contrato ( \par
+matricula VARCHAR(10),\par
+cnpj CHAR(18),\par
+nomemarca VARCHAR(15) unique not NULL,\par
+email VARCHAR(50) unique not NULL,\par
+telefone VARCHAR(20) not NULL,\par
+constraint fkcontrato foreign key (matricula) references Funcionario (matricula) \par
+\tab on update cascade on delete restrict,\par
+constraint pkcontrato primary key (cnpj)\par
+)\par
+\b Tabela Cliente\par
+\b0 create TABLE Cliente ( \par
+cpf CHAR(14),\par
+rg VARCHAR(18) unique not NULL,\par
+nome VARCHAR(50) not NULL,\par
+status BOOLEAN not NULL,\par
+endereco VARCHAR(50) not NULL,\par
+constraint pkcliente primary key (cpf)\par
+)\par
+\par
+\b Tabela ClienteTel\par
+\b0 create TABLE ClienteTel(\par
+telefone VARCHAR(20),\par
+cpf CHAR(14),\par
+constraint fktelcpf foreign key (cpf) references Cliente (cpf) \par
+\tab on update cascade on delete restrict,\par
+constraint pkclientetel primary key (telefone, cpf)\par
+)\par
+\par
+\b Tabela Venda\par
+\b0 create TABLE Venda ( \par
+matricula VARCHAR(10),\par
+cpfcliente CHAR(14),\par
+notafiscal VARCHAR(44),\par
+parcelas VARCHAR(20) not NULL,\par
+parcelaatual VARCHAR(10),\par
+proxparcela VARCHAR(10),\par
+data DATE not NULL,\par
+valorvenda REAL not NULL,\par
+constraint fkvenfunc foreign key (matricula) references Funcionario (matricula) \par
+\tab on update cascade on delete restrict,\par
+constraint fkvenclie foreign key (cpfcliente) references Cliente (cpf) \par
+\tab on update cascade on delete restrict,\par
+constraint pkvenda primary key (notafiscal)\par
+)\par
+\b Tabela Produto\par
+\b0 create TABLE Produto ( \par
+referencia VARCHAR(30),\par
+codigo VARCHAR(12) unique not NULL,\par
+preco REAL not NULL,\par
+nome VARCHAR(30) not NULL,\par
+quantidade VARCHAR(20) not NULL,\par
+descricao VARCHAR(50),\par
+marca VARCHAR (15) not NULL,\par
+constraint pkproduto primary key (referencia)\par
+)\par
+\b Tabela Roupa\par
+\b0 create TABLE Roupa ( \par
+referencia VARCHAR(30),\par
+tamanho VARCHAR(12) not NULL,\par
+tipopeca VARCHAR(12) not NULL,\par
+genero VARCHAR(9) not NULL,\par
+constraint fkroupa foreign key (referencia) references Produto (referencia) \par
+\tab on update cascade on delete restrict,\par
+constraint pkroupa primary key (referencia)\par
+)\par
+Tabela Cosm\'e9tico\par
+create TABLE Cosmetico ( \par
+referencia VARCHAR(30),\par
+tipoproduto VARCHAR(12) not NULL,\par
+constraint fkcosmetico foreign key (referencia) references Produto (referencia) \par
+\tab on update cascade on delete restrict,\par
+constraint pkcosmetico primary key (referencia)\par
+)\par
+\b Tabela VendaProduto\par
+\b0 create TABLE VendaProduto ( \par
+notafiscal VARCHAR(44),\par
+referencia VARCHAR(30),\par
+precounitario REAL not NULL,\par
+quantidade VARCHAR(3) not NULL,\par
+constraint fkvenda foreign key (notafiscal) references Venda (notafiscal) \par
+\tab on update cascade on delete restrict,\par
+constraint fkproduto foreign key (referencia) references Produto (referencia) \par
+\tab on update cascade on delete restrict,\par
+constraint pkvendaprod primary key (notafiscal, referencia)\par
+)\par
+\b Tabela Compra\par
+\b0 create TABLE Compra ( \par
+matricula VARCHAR(10),\par
+codigo VARCHAR(12),\par
+valor REAL not NULL,\par
+data DATE not NULL,\par
+constraint fkcompra foreign key (matricula) references Funcionario (matricula) \par
+\tab on update cascade on delete restrict,\par
+constraint pkcompra primary key (codigo),\par
+)\par
+\b Tabela CompraProduto\par
+\b0 create TABLE CompraProduto ( \par
+codigo VARCHAR(12),\par
+referencia VARCHAR(30),\par
+precounitario REAL not NULL,\par
+quantidade VARCHAR(3) not NULL,\par
+constraint fkcodigo foreign key (codigo) references Compra (codigo) \par
+\tab on update cascade on delete restrict,\par
+constraint fkcomproduto foreign key (referencia) references Produto (referencia) \par
+on update cascade on delete restrict,\par
+constraint pkcompraprod primary key (codigo, referencia)\par
+)\par
+\par
+\b Preenchimento Funcionario\par
+insert into funcionario \par
+values ('1111', '466.207.840-70', 'Geraldo', '(83) 99874-1725', 'Rua das Flores, 65', 2000, 'vendas', 'comum', true)\par
+insert into funcionario \par
+values ('2222', '595.202.490-44', 'Maria', '(83) 98874-6521', 'Rua das Margaridas, 125', 5000, 'ger\'eancia', 'especial', true)\par
+insert into funcionario \par
+values ('3333', '681.389.410-22', 'Ronaldo', '(83) 99784-9632', 'Alameda dos Anjos, 32', 2000, 'vendas', 'comum', true)\par
+insert into funcionario \par
+values ('4444', '803.801.190-21', 'Adamastor', '(83) 9875-6541', 'Alameda dos Anjos, 49', 5000, 'ger\'eancia', 'especial', false)\par
+insert into funcionario \par
+values ('5555', '570.457.700-81', 'Josefa', '(83) 98756-6325', 'Rua das Flores, 69', 2000, 'vendas', 'comum', true)\par
+insert into funcionario \par
+values ('6666', '558.365.800-91', 'Samuel', '(83) 99378-8752', 'Rua das Flores, 69', 2000, 'gerencia', 'especial', true)\par
+insert into funcionario \par
+values ('7777', '879.254.654-27', 'Andr\'e9', '(83) 99874-9562', 'Alameda dos Anjos, 49', 2000, 'vendas', 'comum', true)\par
+\par
+Preenchimento Clientes\par
+insert into cliente \par
+values ('608.554.620-35', '29.684.644-2', 'Joaquim', true, 'Rua das Flores, 89')\par
+insert into cliente \par
+values ('756.956.670-03', '35.752.630-2', 'Renato', false, 'Rua das Margaridas, 369')\par
+insert into cliente \par
+values ('953.509.870-54', '49.360.386-4', 'Jos\'e9', true, 'Alameda dos Anjos, 87')\par
+insert into cliente \par
+values ('426.261.710-69', '33.656.416-8', 'Carla', false, 'Alameda dos Anjos, 879')\par
+insert into cliente \par
+values ('553.849.660-09', '21.723.189-5', 'Paulo', true, 'Rua das Pet\'fanias, 45')\par
+\par
+Preenchimento ClienteTel\par
+insert into clientetel\par
+values('(83) 99874-5698','608.554.620-35')\par
+insert into clientetel\par
+values('(83) 98754-1236','756.956.670-03')\par
+insert into clientetel\par
+values('(83) 99365-1458','953.509.870-54')\par
+insert into clientetel\par
+values('(83) 91254-4587','426.261.710-69')\par
+insert into clientetel\par
+values('(83) 98745-1478','553.849.660-09')\par
+\par
+Preenchimento Produtos\par
+insert into produto\par
+values('11111', '1212', 'cal\'e7a jeans', '15', 'cal\'e7a jeans azul feita de algod\'e3o','levi', 100)\par
+insert into produto\par
+values('22222', '2121','camiseta', '30', 'camiseta de v\'e1rias cores e padr\'f5es','chico rei', 60)\par
+insert into produto\par
+values('3333', '13132','batom', '20', 'batons com diferentes cores','mary key', 35)\par
+insert into produto\par
+values('4444', '31314','corretivo', '30', 'corretivos para todas as tonalidades de peles','mary key', 50)\par
+insert into produto\par
+values(\lquote 55555\rquote , '2323', 'bermuda', '30', 'bermudas jeans feitas em algod\'e3o, cores variadas','levi', 75)\par
+insert into produto\par
+values('66666', '3232', 'vestidos', '15', 'vestidos para ocasi\'f5es especiais','maria bonita', 120)\par
+insert into produto\par
+values('7777', '45456','hidratante', '25', 'hidratante corporal para uma limpeza de pele','natura', 50)\par
+insert into produto\par
+values('8888', '54546','blush', '35', 'textura em p\'f3 com acabamento cintilante','mary key', 56)\par
+insert into produto\par
+values('99999', '9898','saia', '20', 'saias jeans feita em algod\'e3o','levi', 75)\par
+insert into produto\par
+values('1010', '78789','gloss', '30', 'gloss sabor cereja','mary key', 30)\par
+\par
+Preenchimento Produtos-Roupas\par
+insert into roupa\par
+values('11111', 'G', 'cal\'e7a', 'unissex')\par
+insert into roupa\par
+values('22222', 'M\rquote ,'camiseta', 'masculino')\par
+insert into roupa\par
+values('55555', 'P', 'bermudas', 'masculino')\par
+insert into roupa\par
+values('66666', 'M', 'vestido', 'feminino')\par
+insert into roupa\par
+values('99999', 'P', 'saia', 'feminino')\par
+\par
+Preenchimento Produtos-Cosmeticos\par
+insert into cosmetico\par
+values('3333', 'batom')\par
+insert into cosmetico\par
+values('4444', 'corretivo')\par
+insert into cosmetico\par
+values('7777', 'hidratante')\par
+insert into cosmetico\par
+values('8888', 'blush')\par
+insert into cosmetico\par
+values('1010', 'gloss')\par
+\par
+Preenchimento venda\par
+insert into venda\par
+values('1111','608.554.620-35', '100', '0', null, null, '03-05-2021', 300)\par
+insert into venda\par
+values('3333', '756.956.670-03', '110', '2', '1', '2', '08-01-2021', 500)\par
+insert into venda\par
+values('5555','953.509.870-54', '120', '4', '3', '4', '12-06-2020', 1000)\par
+insert into venda\par
+values('1111','426.261.710-69', '130', '2', '1', '2', '12-06-2020', 200)\par
+insert into venda\par
+values('3333','553.849.660-09', '140', '0', null, null, '08-01-2021', 500)\par
+\par
+Preenchimento compra\par
+insert into compra\par
+values('2222', '200', 1100, '30-08-2020')\par
+insert into compra\par
+values('6666', '210', 1500, '15-11-2020')\par
+insert into compra\par
+values('6666', '220', 1000, '26-01-2021')\par
+insert into compra\par
+values('2222', '230', 2000, '17-02-2021')\par
+insert into compra\par
+values('2222', '240', 2500, '26-04-2021')\par
+\par
+Preenchimento Receita\par
+insert into receita\par
+values('2222','300','Cr\'e9dito di\'e1rio', 'Apurado com as vendas do dia', '20-03-2021')\par
+insert into receita\par
+values('6666','310','AtrasoParcelas', 'Valores de clientes que estavam em atraso', '30-03-2021')\par
+insert into receita\par
+values('2222','330','AtrasoParcelas', 'Valores de clientes que estavam em atraso', '15-04-2021')\par
+insert into receita\par
+values('6666','340','Cr\'e9dito di\'e1rio', 'Apurado com as vendas do dia', '20-04-2021')\par
+insert into receita\par
+values('6666','320','Alugu\'e9is', 'Apurado com os alugu\'e9is das vitrines', '25-04-2021')\par
+\par
+Preenchimento Despesas\par
+insert into despesa\par
+values('6666','400','PagamentoFunc', 'Sal\'e1rio dos funcion\'e1rios', '04-03-2021')\par
+insert into despesa\par
+values('2222','410','Pagamento\'c1gua', 'D\'e9bito mensal de \'e1gua', '15-03-2021')\par
+insert into despesa\par
+values('2222','420','PagEnergia', 'D\'e9bito mensal de energia el\'e9trica', '15-03-2021')\par
+insert into despesa\par
+values('2222','430','PagamentoFunc', 'Sal\'e1rio dos funcion\'e1rios', '04-04-2021')\par
+insert into despesa\par
+values('6666','440','Pagamento\'c1gua', 'D\'e9bito mensal de \'e1gua', '15-04-2021')\par
+insert into despesa\par
+values('6666','450','PagEnergia', 'D\'e9bito mensal de energia el\'e9trica', '15-04-2021')\par
+\par
+Preenchimento Contrato\par
+insert into contrato\par
+values('2222', '77.007.945/0001-60','LilicaRepilica','lilica@hotmail.com','(83)98745-6321')\par
+insert into contrato\par
+values('6666', '81.434.376/0001-06','Levi','levi@hotmail.com','(83) 98521-9654')\par
+\cf0\highlight0\b0\f1\fs22  \cf1\highlight2\b\f0\fs20 insert into contrato\par
+values('2222', '62.987.504/0001-02','CalvinKlein','klein@hotmail.com','(83)87452-9874')\cf0\highlight0\b0\f1\fs22  \par
+\cf1\highlight2\b\f0\fs20 insert into contrato\par
+values('6666', '50.183.414/0001-71','MaryKey','marykey@hotmail.com','(83)99396-8745')\par
+insert into contrato\par
+values('2222', '19.605.321/0001-48','MariaBonita','bonita@hotmail.com','(83)99875-5877')\par
+\par
+Preenchimento CompraProduto\par
+insert into compraproduto\par
+values('200', '11111', 55,'20')\par
+insert into compraproduto\par
+values('210', '22222', 37.5,'40')\par
+insert into compraproduto\par
+values('220', '3333', 20, '50')\par
+insert into compraproduto\par
+values('230', '7777', 20, '100')\par
+insert into compraproduto\par
+values('240', '99999', 50, '50')\par
+\par
+Preenchimento VendaProduto\par
+insert into vendaproduto\par
+values('100', '11111', 100, '3')\par
+insert into vendaproduto\par
+values('110', '7777', 50, '10')\par
+insert into vendaproduto\par
+values('120', '4444', 50, '20')\par
+insert into vendaproduto\par
+values('130', '11111', 100, '2')\par
+insert into vendaproduto\par
+values('140', '11111', 100, '5')\par
+\par
+Cria\'e7\'e3o de \'edndices\par
+\b0 create index indicefuncionario on funcionario (matricula)\par
+create index indicereceita on receita (codigo)\par
+create index indicedespesa on despesa (codigo)\par
+create index indicecontrato on contrato (cnpj)\par
+create index indicevenda on venda (notafiscal)\par
+create index indicevendaproduto on vendaproduto (notafiscal,referencia)\par
+create index indicecompra on compra (codigo)\par
+create index indicecompraproduto on compraproduto (codigo,referencia)\par
+create index indicecliente on cliente (cpf)\par
+create index indiceclientetel on clientetel (telefone,cpf)\par
+create index indiceproduto on produto (referencia)\par
+create index indicecosmetico on cosmetico (referencia)\par
+create index indiceroupa on roupa (referencia)\b\par
+\par
+\b0 Consultas\par
+\b 1 - Nome, endere\'e7o e telefone de funcion\'e1rios que realizaram vendas. (jun\'e7\'e3o)\b0\par
+select distinct nome, telefone, endereco\par
+from funcionario f natural join venda v\par
+where f.matricula = v.matricula\par
+\pard\sl259\slmult0\par
+\pard\sa160\sl259\slmult0\b 2 - Nome dos gerentes e os contratos que cada um realizou (jun\'e7\'e3o).\par
+\b0 select f.nome, co.cnpj, co.nomemarca\par
+from funcionario f join contrato co on f.matricula = co.matricula\par
+\par
+\b 3 - Nome, endere\'e7o e telefone de funcion\'e1rios que n\'e3o realizaram vendas. (consulta aninhada correlacionada)\b0\par
+\par
+select distinct nome, telefone, endereco\par
+from funcionario f\par
+where not exists(\par
+select *\par
+from venda v\par
+where f.matricula = v.matricula\par
+)\par
+\b\par
+4 - Nota fiscal e data das vendas que j\'e1 foram quitadas (compara\'e7\'e3o por valores nulos)\b0\par
+Select notafiscal, data\par
+from venda \par
+where proxparcela is NULL\par
+\par
+\b 5 - Selecionar nome, pre\'e7o e descri\'e7\'e3o de todos os produtos que foram adicionados com uma descri\'e7\'e3o no banco de dados (compara\'e7\'e3o por valores nulos).\par
+\b0 select nome, preco, descricao\par
+from produto\par
+where descricao is not NULL\par
+\par
+6 - \b Selecionar nome e matr\'edcula de todos os funcion\'e1rios que moram na rua alameda dos anjos (busca por substring).\par
+\b0 select nome, matricula\par
+from funcionario\par
+where endereco LIKE 'Alameda%'\par
+\par
+\b 7 - Selecionar c\'f3digo, descri\'e7\'e3o e data de todas as receitas provenientes de cr\'e9dito 9busca por substring)\par
+\b0 select codigo, descricao, datarecebimento\par
+from receita\par
+where tiporeceita LIKE 'Cr\'e9dito%'\par
+\par
+\b 8 - Listar nome, matr\'edcula , sal\'e1rio e setor dos funcion\'e1rios em ordem decrescente de sal\'e1rio e, se estes forem iguais, em ordem crescente de nome (consulta ordenada).\b0\par
+select nome, matricula, salario, setor\par
+from funcionario\par
+order by salario desc, nome asc \par
+\par
+\b 9 - Selecionar nome, referencia e pre\'e7o dos produtos em ordem descendente de pre\'e7o (consulta ordenada)\par
+\b0 select nome, referencia, preco\par
+from produto\par
+order by preco desc\par
+\par
+\b 10 - Buscar nota fiscal e valor das vendas realizadas para clientes que est\'e3o inadimplentes (consulta aninhada)\b0\par
+select notafiscal, valorvenda\par
+from venda \par
+where cpfcliente in \par
+(select cpf \par
+ from cliente \par
+ where status = false)\par
+\par
+\b 11 - Selecionar nome e matr\'edcula dos gerentes que j\'e1 realizaram algum contrato com marcas (consulta aninhada)\b0\par
+select nome, matricula \par
+from funcionario \par
+where matricula in \par
+(select matricula \par
+\pard\sa200\sl276\slmult1  from contrato)\par
+\par
+\b 12 - Selecionar o maior sal\'e1rio, o menor sal\'e1rio, e a m\'e9dia salarial dos funcion\'e1rios da loja (fun\'e7\'f5es agregadas)\par
+\b0 select max (salario) as maiorsalario, min (salario) as menorsalario, avg (salario) as mediasalarial\par
+from funcionario \par
+\par
+\b 13 - Contar quantas vendas foram realizadas com pagamento \'e0 vista (fun\'e7\'f5es agregadas).\par
+\b0 select count(*)\par
+from venda \par
+where parcelas = '0'\par
+\cf0\highlight0\f1\fs22\par
+}
+ 
